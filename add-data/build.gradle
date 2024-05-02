@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'org.example.Main'
+mainClassName = 'org.example.OrderWithTSProducer'
 
 group = 'org.example'
 version = '1.0-SNAPSHOT'

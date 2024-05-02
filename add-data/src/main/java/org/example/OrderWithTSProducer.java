@@ -1,5 +1,9 @@
 package org.example;
 
+import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
+import org.apache.kafka.clients.producer.*;
+import org.jetbrains.annotations.NotNull;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -9,11 +13,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import org.apache.kafka.clients.producer.*;
-import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
-import org.jetbrains.annotations.NotNull;
-
-public class OrderProducer {
+public class OrderWithTSProducer {
 
     public static final String APP_PROPERTIES = "app.properties";
 
@@ -22,7 +22,7 @@ public class OrderProducer {
 
         Producer<String, Order> producer = new KafkaProducer<>(props);
 
-        String topic = "orders";
+        String topic = "timestamp-ext-orders";
         String key = generateKey(); // run app several times without cleaning env
 
         Set<Order> orders = new HashSet<>();
