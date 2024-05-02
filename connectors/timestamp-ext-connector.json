@@ -1,0 +1,25 @@
+{
+  "name": "jdbc-sink-timestamp-ext",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+    "topics": "timestamp-ext-orders",
+    "table.name.format": "kafka_${topic}",
+    "connection.url": "jdbc:postgresql://local-db:5432/user-name",
+    "connection.user": "user-name",
+    "connection.password": "strong-password",
+    "auto.create": "true",
+    "auto.evolve": "true",
+    "pk.mode": "record_value",
+    "pk.fields": "order_id",
+    "value.converter": "io.confluent.connect.json.JsonSchemaConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+    "transforms"                          : "insertts,formatts",
+    "transforms.insertts.type"            : "org.apache.kafka.connect.transforms.InsertField$Value",
+    "transforms.insertts.timestamp.field" : "msg_ts",
+    "transforms.formatts.type"            : "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+    "transforms.formatts.format"          : "yyyy-MM-dd HH:mm:ss:SSS",
+    "transforms.formatts.field"           : "msg_ts",
+    "transforms.formatts.target.type"     : "string"
+  }
+}
