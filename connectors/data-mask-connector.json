@@ -1,0 +1,22 @@
+{
+  "name": "jdbc-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+    "topics": "orders",
+    "table.name.format": "kafka_${topic}",
+    "connection.url": "jdbc:postgresql://local-db:5432/user-name",
+    "connection.user": "user-name",
+    "connection.password": "strong-password",
+    "auto.create": "true",
+    "auto.evolve": "true",
+    "pk.mode": "record_value",
+    "pk.fields": "order_id",
+    "value.converter": "io.confluent.connect.json.JsonSchemaConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+    "transforms": "CustomerNameMask",
+    "transforms.CustomerNameMask.type": "org.apache.kafka.connect.transforms.MaskField$Value",
+    "transforms.CustomerNameMask.fields": "customer_name",
+    "transforms.CustomerNameMask.replacement": "Data Mask"
+  }
+}
