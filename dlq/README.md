@@ -46,3 +46,7 @@ kafka-json-schema-console-producer \
 2. Run several times OrderDlqProducer
    - After first run entries will be added to db table `kafka-orders` 
    - During next run messages, due to `org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "kafka_orders_pkey"` will be landed on `dlq-orders`
+
+## Useful links
+https://www.confluent.io/blog/kafka-connect-deep-dive-error-handling-dead-letter-queues/
+https://docs.confluent.io/platform/current/installation/configuration/connect/sink-connect-configs.html

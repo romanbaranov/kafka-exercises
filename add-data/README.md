@@ -31,3 +31,6 @@ curl http://connect:8083/connectors/jdbc-sink/status
 - `{"order_id": "order2","customer_id": "cid1","customer_name": "Rick Grimes"}`
 - `{"order_id": "order42","customer_id": "cid29","customer_name": "Maggie Rhee"}`
 - `{"order_id": "order98","customer_id": "cid42","customer_name": "Daryl Dixon"}`
+
+## Useful links
+https://rmoff.net/categories/twelvedaysofsmt/
