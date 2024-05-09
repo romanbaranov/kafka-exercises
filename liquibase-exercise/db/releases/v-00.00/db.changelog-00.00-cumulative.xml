@@ -13,4 +13,5 @@
 
     <include file="./db.changelog-00.00.sql" relativeToChangelogFile="true" />
     <include file="./db.changelog-00.01.sql" relativeToChangelogFile="true" />
+    <include file="./db.changelog-00.01_rollback.sql" relativeToChangelogFile="true" />
 </databaseChangeLog>

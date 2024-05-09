@@ -1,6 +1,6 @@
 -- liquibase formatted sql
 
--- changeset rnbv:001-create-tables
+-- changeset rnbv:001-create-tables context:update
 -- comment: JIRA-1234
 CREATE TABLE HR.RULES_V2
     ( rules_v2_id    NUMBER(6) PRIMARY KEY

@@ -1,6 +1,6 @@
 -- liquibase formatted sql
 
--- changeset rnbv:003-seed-db
+-- changeset rnbv:003-seed-db context:update
 -- comment: JIRA-1234
 INSERT INTO HR.GLOBAL_VARS (GLOBAL_VARS_ID, global_vars_name , global_vars_description) VALUES(0, 'test-var-0', 'business rule test-var-0');
 INSERT INTO HR.GLOBAL_VARS (GLOBAL_VARS_ID, global_vars_name , global_vars_description) VALUES(1, 'test-var-1', 'business rule test-var-1');

@@ -1,6 +1,6 @@
 -- liquibase formatted sql
 
--- changeset rnbv:002-seed-db
+-- changeset rnbv:002-seed-db context:update
 -- comment: JIRA-1234
 INSERT INTO HR.RULES_V2 (RULES_V2_ID, RULE_NAME, RULE_DESCRIPTION) VALUES(0, 'test-0', 'business rule test-0');
 INSERT INTO HR.RULES_V2 (RULES_V2_ID, RULE_NAME, RULE_DESCRIPTION) VALUES(1, 'test-1', 'business rule test-1');

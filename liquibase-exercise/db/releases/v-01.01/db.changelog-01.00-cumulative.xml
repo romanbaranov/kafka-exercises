@@ -12,4 +12,5 @@
               http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
     <include file="./db.changelog-01.00.sql" relativeToChangelogFile="true" />
+    <include file="./db.changelog-01.00_rollback.sql" relativeToChangelogFile="true" />
 </databaseChangeLog>
