@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.example.db</groupId>
+  <artifactId>db</artifactId>
+  <version>1.0.0</version>
+  <name>db</name>
+  <description>Test Database</description>
+  <packaging>pom</packaging>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <slf4j.version>1.7.24</slf4j.version>
+    <logback.version>1.2.3</logback.version>
+    <liquibase.version>4.27.0</liquibase.version>
+    <oracle.version>23.2.0.0</oracle.version>
+    <snakeyaml.version>1.23</snakeyaml.version>
+  </properties>
+  <dependencies>
+    <!--Logging-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+
+    <!--JDBC drivers-->
+    <dependency>
+      <groupId>com.oracle.database.jdbc</groupId>
+      <artifactId>ojdbc11-production</artifactId>
+      <version>${oracle.version}</version>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>${liquibase.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>${snakeyaml.version}</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-maven-plugin</artifactId>
+        <version>${liquibase.version}</version>
+        <configuration>
+          <propertyFile>${profile.propertyFile}</propertyFile>
+          <changeLogFile>${profile.changeLogFile}</changeLogFile>
+<!--          <dataDir>${profile.dataDir}</dataDir>-->
+          <!-- log  -->
+          <verbose>${profile.verbose}</verbose>
+          <logging>${profile.logging}</logging>
+          <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <!-- Development settings, -Denv=dev -->
+    <profile>
+      <id>dev</id>
+      <activation>
+        <property>
+          <name>env</name>
+          <value>dev</value>
+        </property>
+      </activation>
+      <properties>
+        <profile.propertyFile>.\\db\\liquibase.properties</profile.propertyFile>
+        <profile.changeLogFile>.\\db\\db.changelog-root.xml</profile.changeLogFile>
+<!--        <profile.dataDir>dev/data</profile.dataDir>-->
+        <profile.verbose>true</profile.verbose>
+        <profile.logging>fine</profile.logging>
+      </properties>
+    </profile>
+    <!-- Production settings, -Denv=prod -->
+<!--    <profile>
+      <id>prod</id>
+      <activation>
+        <property>
+          <name>env</name>
+          <value>prod</value>
+        </property>
+      </activation>
+      <properties>
+        <profile.propertyFile>${basedir}/db/liquibase.properties</profile.propertyFile>
+        <profile.changeLogFile>${basedir}/db/master-changelog.root.xml</profile.changeLogFile>
+        <profile.dataDir>prod/data</profile.dataDir>
+        <profile.verbose>false</profile.verbose>
+        <profile.logging>FINE</profile.logging>
+      </properties>
+    </profile>-->
+  </profiles>
+</project>
